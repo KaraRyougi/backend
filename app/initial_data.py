@@ -7,17 +7,17 @@ from app.db.schemas.user import UserCreate
 
 
 def init() -> None:
-    email = input("请输入管理员邮箱：")
+    email = input("Super Administrator Account Email: ")
     if not email or "@" not in email:
-        print(" 邮箱格式不正确　！")
+        print(" Malformed email address!")
         return
-    password = getpass("请输入密码：")
+    password = getpass("Password: ")
     if len(password) < 8:
-        print("密码长度必须不少于8位，否则无法登录！")
+        print("Password length must be at least 8 characters!")
         return
-    repeated_password = getpass("请再次输入密码：")
+    repeated_password = getpass("Repeat password: ")
     if password != repeated_password:
-        print("两次密码不一致！")
+        print("Passwords do not match!")
         return
 
     with db_session() as db:
